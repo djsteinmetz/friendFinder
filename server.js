@@ -9,6 +9,10 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
+var friends = require("./app/data/friends")(app);
+var apiRoutes = require("./routing/apiRoutes")(app);
+var htmlRoutes = require("./routing/htmlRoutes")(app);
+
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
