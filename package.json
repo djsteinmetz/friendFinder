@@ -1,0 +1,15 @@
+{
+  "name": "friend_finder",
+  "version": "1.0.0",
+  "description": "Friend Finder is a compatibility-based \"FriendFinder\" application that matches people up based on comonalities in their survey responses.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "friendFinder"
+  ],
+  "author": "Dj Steinmetz",
+  "license": "ISC"
+}
