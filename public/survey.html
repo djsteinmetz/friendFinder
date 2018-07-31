@@ -114,12 +114,12 @@
         $("#add-btn").on("click", function (event) {
             event.preventDefault();
             var newFriend = {
-                name: $("name").val().trim(),
+                name: $("#name").val().trim(),
                 image: $("#image").val().trim(),
-                outdoors: $("#outdoors").val().trim(),
-                dogs: $("#dogs").val().trim(),
-                cats: $("#cats").val().trim(),
-                reading: $("#reading").val().trim()
+                scores: [$("#outdoors").val().trim(),
+                $("#dogs").val().trim(),
+                $("#cats").val().trim(),
+                $("#reading").val().trim()]
             };
 
             // Question: What does this code do??
