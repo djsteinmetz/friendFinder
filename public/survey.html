@@ -40,8 +40,8 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <h2 id="friendName"></h2>
-                        <img src="#" alt="friend image" id="friendImage">
+                        <h2 class="text-center" id="friendName"></h2>
+                        <img src="#" alt="friend image" class="text-center" id="friendImage">
                         <h3 id="percentMatch"></h3>
                     </div>
                 </div>
@@ -147,12 +147,6 @@
                 $("#cats").val().trim(),
                 $("#reading").val().trim()]
             };
-            // Logic to display the most closely matched 'friend' to the user
-            $("#friendName").html(newFriend.name);
-            console.log(newFriend.image);
-            $("#friendImage").attr("src", newFriend.image);
-            $("#percentMatch").html("80% Match!");
-
             $.get("/api/friends", function (req, res) {
                 let yourScore = newFriend.scores;
                 console.log(yourScore);
@@ -164,32 +158,49 @@
                 console.log(newFriend);
                 console.log(req);
                 // This is not right yet.... hmmm.
-                let matches = [];
+                let friends = [];
                 let matchScore = 0;
+                let diff = 0;
                 for (var i = 0; i < req.length; i++) {
                     let scores = req[i].scores;
                     let total = 0;
-                    for (var o = 0; o< scores.length; o++) {
+                    for (var o = 0; o < scores.length; o++) {
                         total = (total + parseInt(scores[o]));
-                    
-                        // req[i]["total"] = total
                     };
-                    matches.push({
-                        name: req[i].name, 
-                        total: total
+                    diff = Math.abs(total - yourTotal);
+                    console.log("DIFF: " + diff)
+                    friends.push({
+                        name: req[i].name,
+                        image: req[i].image,
+                        total: total,
+                        diff: diff
                     });
-                    // for(var i=0; i<them.scores.length; i++) {
-                    //     match[i] = matchScore + them.scores[i];
-                    // };
-                    // console.log(match[i]);
                 };
-                console.log(matches);
+                console.log(friends);
+
+                let bestFriend = [];
+                let min = friends[0].diff;
+                for (let i = 0, len = friends.length; i < len; i++) {
+                    let v = friends[i].diff;
+                    min = (v < min) ? v : min;
+                }
+                for (var q = 0; q < friends.length; q++) {
+                    if (friends[q].diff === min) {
+                        bestFriend.push(friends[q]);
+                    }
+                }
+                console.log(min);
+                console.log(bestFriend);
+                // Logic to display the most closely matched 'friend' to the user
+                $("#friendName").html(bestFriend[0].name);
+                $("#friendImage").attr("src", bestFriend[0].image);
+                // $("#percentMatch").html("80% Match!");
+
             });
 
             $.post("/api/friends", newFriend)
                 .then(function (data) {
                     console.log("survey.html", data);
-                    alert("Adding potential friend...");
                 });
         });
 
