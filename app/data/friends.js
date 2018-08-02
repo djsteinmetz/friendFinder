@@ -7,7 +7,7 @@ var friends = [
             3,
             1,
             2,
-            5
+            5,
         ]
     },
     {
@@ -20,5 +20,6 @@ var friends = [
             5
         ]
     }
-]
+];
+
 module.exports = friends;

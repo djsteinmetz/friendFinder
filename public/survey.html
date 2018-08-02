@@ -31,27 +31,27 @@
     <!-- Modal Popup for Friend Results -->
     <div class="modal" tabindex="-1" role="dialog" id="myModal">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Your best friend match is ...</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Your best friend match is ...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h2 id="friendName"></h2>
+                        <img src="#" alt="friend image" id="friendImage">
+                        <h3 id="percentMatch"></h3>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-body">
-              <div>
-                <h2 id="friendName"></h2>
-                <img src="#" alt="friend image" id="friendImage">
-                <h3 id="percentMatch"></h3>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save changes</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
     <div class="container">
 
@@ -147,17 +147,52 @@
                 $("#cats").val().trim(),
                 $("#reading").val().trim()]
             };
+            // Logic to display the most closely matched 'friend' to the user
             $("#friendName").html(newFriend.name);
             console.log(newFriend.image);
             $("#friendImage").attr("src", newFriend.image);
             $("#percentMatch").html("80% Match!");
-            // Question: What does this code do??
+
+            $.get("/api/friends", function (req, res) {
+                let yourScore = newFriend.scores;
+                console.log(yourScore);
+                let yourTotal = 0;
+                for (var i = 0; i < yourScore.length; i++) {
+                    yourTotal = (yourTotal + parseInt(yourScore[i]));
+                };
+                console.log("TOTAL:" + yourTotal);
+                console.log(newFriend);
+                console.log(req);
+                // This is not right yet.... hmmm.
+                let matches = [];
+                let matchScore = 0;
+                for (var i = 0; i < req.length; i++) {
+                    let scores = req[i].scores;
+                    let total = 0;
+                    for (var o = 0; o< scores.length; o++) {
+                        total = (total + parseInt(scores[o]));
+                    
+                        // req[i]["total"] = total
+                    };
+                    matches.push({
+                        name: req[i].name, 
+                        total: total
+                    });
+                    // for(var i=0; i<them.scores.length; i++) {
+                    //     match[i] = matchScore + them.scores[i];
+                    // };
+                    // console.log(match[i]);
+                };
+                console.log(matches);
+            });
+
             $.post("/api/friends", newFriend)
                 .then(function (data) {
                     console.log("survey.html", data);
                     alert("Adding potential friend...");
                 });
         });
+
     </script>
 
 </body>

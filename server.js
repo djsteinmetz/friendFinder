@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Require the HTML Routing page
-require("./routing/htmlRoutes")(app);
 require("./routing/apiRoutes")(app);
+require("./routing/htmlRoutes")(app);
 require("./app/data/friends");
 // Starts the server to begin listening
 // =============================================================
