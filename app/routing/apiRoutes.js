@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-var friends = require("../app/data/friends");
+var friends = require("../data/friends");
 // Routes
 // =============================================================
 module.exports = function(app) {
