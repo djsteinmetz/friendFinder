@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Friend Finder - Home</title>
+        <!-- Latest compiled and minified CSS & JS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Francois+One" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </head>
+<body>
+    <style>
+        .container {
+            margin-bottom: 30px;
+        }
+        h1 {
+            text-align: center;
+        }
+        h4 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        i {
+            font-size: 18px;
+        }
+        #jumbotron1 {
+            padding-top: 100px;
+        }
+        .jumbotron {
+            background-color: rgb(233, 236, 239, 0.6) 
+        }
+        #friendFinder {
+            position: relative;
+            /* z-index: 500; */
+            vertical-align: top;
+            font-size: 6em;
+            font-family: 'Francois One', sans-serif;
+            /* margin-top: 50px;
+            margin-bottom: -175px; */
+        }
+        .fa-search {
+            position: relative;
+            display: block;
+            font-size: 15rem;
+            color: rgb(0, 0, 0, 0.05);
+            margin-top: -225px;
+            margin-right: -25px;
+            z-index: 1;
+        }
+
+        .fa-users {
+            position: relative;
+            display: block;
+            font-size: 7.5rem;
+            color: rgb(192, 192, 192);
+            margin-top: -55px;
+            z-index: 10;
+        }
+    </style>
+    <div class="jumbotron jumbotron-billboard" id=jumbotron1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 id="friendFinder">Friend Finder</h1>
+                    <i class="fas fa-users" id="utensils"></i>
+                    <i class="fas fa-search" id="fire"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Hello! Welcome to Friend Finder.</h1>
+            </div>
+        </div>
+        <a href="/api/friends">Friends API</a> | <a href="/survey">Take the survey!</a>
+    </div>
+</body>
+</html>
