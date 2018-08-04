@@ -61,9 +61,13 @@
             position: relative;
             display: block;
             font-size: 7.5rem;
-            color: rgb(192, 192, 192);
+            color: rgb(71,104,173);
             margin-top: -55px;
             z-index: 10;
+        }
+        .btn-primary {
+            background-color: rgb(71,104,173);
+            border-color: rgb(71,104,173);
         }
     </style>
     <div class="jumbotron jumbotron-billboard" id=jumbotron1>
@@ -142,22 +146,22 @@
                                 <div class="col-lg-12">
                                     <label for="outdoors">You like the outdoors.</label>
                                     <select class="form-control" id="outdoors">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        <option value="1">1 (Highly disagree)</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5 (Highly Agree)</option>
                                     </select>
                                 </div>
 
                                 <div class="col-lg-12">
                                     <label for="dogs">You like dogs.</label>
                                     <select class="form-control" id="dogs">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        <option value="1">1 (Highly disagree)</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5 (Highly Agree)</option>
                                     </select>
                                 </div>
                             </div>
@@ -165,22 +169,22 @@
                             <div class="form-group">
                                 <label for="cats">You like cats.</label>
                                 <select class="form-control" id="cats">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option value="1">1 (Highly disagree)</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 (Highly Agree)</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="reading">You like reading.</label>
                                 <select class="form-control" id="reading">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option value="1">1 (Highly disagree)</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 (Highly Agree)</option>
                                 </select>
                             </div>
 
@@ -227,13 +231,10 @@
             resetForm();
             // Get bff
             getBFF(friends, yourTotal, newFriend, bestFriend);
-            // Post latest user
-            addLatestUser(newFriend);
-
         });
         function addLatestUser(newFriend) {
             $.post("/api/friends", newFriend).then(function (data) {
-                console.log("Friend Added!", data);
+                console.log("You've been added!", data);
             });
         };
         function resetForm() {
@@ -282,6 +283,8 @@
                 $("#friendName").html(bestFriend[0].name);
                 $("#friendImage").attr("src", bestFriend[0].image);
                 // $("#percentMatch").html("80% Match!");
+                // Post latest user
+                addLatestUser(newFriend);
             });
         }
     </script>
