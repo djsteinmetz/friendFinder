@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Francois+One" rel="stylesheet">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -61,13 +62,14 @@
             position: relative;
             display: block;
             font-size: 7.5rem;
-            color: rgb(71,104,173);
+            color: rgb(71, 104, 173);
             margin-top: -55px;
             z-index: 10;
         }
+
         .btn-primary {
-            background-color: rgb(71,104,173);
-            border-color: rgb(71,104,173);
+            background-color: rgb(71, 104, 173);
+            border-color: rgb(71, 104, 173);
         }
     </style>
     <div class="jumbotron jumbotron-billboard" id=jumbotron1>
@@ -82,7 +84,7 @@
         </div>
     </div>
     <!-- Modal Popup for Friend Results -->
-    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal animated faster fadeInDown" tabindex="-1" role="dialog" id="myModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -188,6 +190,72 @@
                                 </select>
                             </div>
 
+                            <div class="form-group">
+                                <label for="reading">You like documentaries.</label>
+                                <select class="form-control" id="documentaries">
+                                    <option value="1">1 (Highly disagree)</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 (Highly Agree)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reading">You like rain.</label>
+                                <select class="form-control" id="rain">
+                                    <option value="1">1 (Highly disagree)</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 (Highly Agree)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reading">You like children.</label>
+                                <select class="form-control" id="children">
+                                    <option value="1">1 (Highly disagree)</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 (Highly Agree)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reading">You like steak.</label>
+                                <select class="form-control" id="steak">
+                                    <option value="1">1 (Highly disagree)</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 (Highly Agree)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reading">You like vegetables.</label>
+                                <select class="form-control" id="veggies">
+                                    <option value="1">1 (Highly disagree)</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 (Highly Agree)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reading">You like movies.</label>
+                                <select class="form-control" id="movies">
+                                    <option value="1">1 (Highly disagree)</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 (Highly Agree)</option>
+                                </select>
+                            </div>
+
                         </form>
                         <br>
                         <div class="text-left">
@@ -201,92 +269,50 @@
             </div>
         </div>
     </div>
-    <!-- Getting some weird results here when you submit the form multiple times............. -->
+    <!-- I feel like you get weird results when you submit the form multiple times... is there a better way to do this? -->
     <script type="text/javascript">
-        let bestFriend = [];
-        let friends = [];
-        let matchScore = 0;
-        let diff = 0;
-        $("#add-btn").on("click", function (event) {
-            event.preventDefault();
-                let newFriend = {
-                name: $("#name").val().trim(),
-                image: $("#image").val().trim(),
-                scores: [$("#outdoors").val().trim(),
-                $("#dogs").val().trim(),
-                $("#cats").val().trim(),
-                $("#reading").val().trim()]
-            };
-            // Total 'your' scores
-            let yourScore = newFriend.scores;
-            console.log(yourScore);
-            let yourTotal = 0;
-            for (var i = 0; i < yourScore.length; i++) {
-                yourTotal = (yourTotal + parseInt(yourScore[i]));
-            };
-            console.log("TOTAL:" + yourTotal);
-            console.log(newFriend);
-            // console.log(req);
-            // Reset form values
-            resetForm();
-            // Get bff
-            getBFF(friends, yourTotal, newFriend, bestFriend);
-        });
-        function addLatestUser(newFriend) {
-            $.post("/api/friends", newFriend).then(function (data) {
-                console.log("You've been added!", data);
-            });
-        };
-        function resetForm() {
-            $("#name").val("");
-            $("#image").val("")
-            $("#outdoors").val(1);
-            $("#dogs").val(1);
-            $("#cats").val(1);
-            $("#reading").val(1);
-        };
-        function getBFF(friends, yourTotal, newFriend, bestFriend) {
-            // GET friends API
-            $.get("/api/friends", function (req, res) {
-                // This is not right yet.... hmmm.
-                
-                for (var i = 0; i < req.length; i++) {
-                    let scores = req[i].scores;
-                    let total = 0;
-                    for (var o = 0; o < scores.length; o++) {
-                        total = (total + parseInt(scores[o]));
-                    };
-                    diff = Math.abs(total - yourTotal);
-                    console.log("DIFF: " + diff)
-                    friends.push({
-                        name: req[i].name,
-                        image: req[i].image,
-                        total: total,
-                        diff: diff
-                    });
+        $(document).ready(function () {
+            // Add friend to the API
+            $(document).on("click", "#add-btn", function (event) {
+                event.preventDefault();
+                let you = {
+                    name: $("#name").val().trim(),
+                    image: $("#image").val().trim(),
+                    scores: [$("#outdoors").val().trim(),
+                    $("#dogs").val().trim(),
+                    $("#cats").val().trim(),
+                    $("#reading").val().trim(),
+                    $("#documentaries").val().trim(),
+                    $("#rain").val().trim(),
+                    $("#children").val().trim(),
+                    $("#steak").val().trim(),
+                    $("#veggies").val().trim(),
+                    $("#movies").val().trim()]
                 };
-                console.log(friends);
-
-                let min = friends[0].diff;
-                for (let i = 0, len = friends.length; i < len; i++) {
-                    let v = friends[i].diff;
-                    min = (v < min) ? v : min;
-                }
-                for (var q = 0; q < friends.length; q++) {
-                    if (friends[q].diff === min && friends[q] != newFriend) {
-                        bestFriend.push(friends[q]);
-                    }
-                }
-                console.log(min);
-                console.log(bestFriend);
-                // Logic to display the most closely matched 'friend' to the user
-                $("#friendName").html(bestFriend[0].name);
-                $("#friendImage").attr("src", bestFriend[0].image);
-                // $("#percentMatch").html("80% Match!");
-                // Post latest user
-                addLatestUser(newFriend);
+                console.log("YOU: ", you)
+                $.post("/api/friends", you, function (data) {
+                    console.log("You've been added!", you);
+                    // change modal src to new bff name, image
+                    $("#friendName").text(data.name);
+                    console.log('best match name: ', data.name)
+                    $("#friendImage").attr("src", data.image);
+                    console.log('best match image src', data.image)
+                    // clear form after submission
+                    $("#name").val("");
+                    $("#image").val("")
+                    $("#outdoors").val(1);
+                    $("#dogs").val(1);
+                    $("#cats").val(1);
+                    $("#reading").val(1);
+                    $("#documentaries").val(1);
+                    $("#rain").val(1);
+                    $("#children").val(1);
+                    $("#steak").val(1);
+                    $("#veggies").val(1);
+                    $("#movies").val(1);
+                });
             });
-        }
+        })
     </script>
 
 </body>

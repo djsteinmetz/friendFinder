@@ -59,6 +59,10 @@
             margin-top: -55px;
             z-index: 10;
         }
+        .btn-primary {
+            background-color: rgb(71, 104, 173);
+            border-color: rgb(71, 104, 173);
+        }
     </style>
     <div class="jumbotron jumbotron-billboard" id=jumbotron1>
         <div class="container">
@@ -71,10 +75,18 @@
             </div>
         </div>
     </div>
+    
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1>Hello! Welcome to Friend Finder.</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <a href="/survey" class="btn btn-primary btn-md" role="button" aria-pressed="true"><span class="fas fa-file-import"></span> Take the Survey!</a>
+                </div>
             </div>
         </div>
         <a href="/api/friends">Friends API</a> | <a href="/survey">Take the survey!</a>
