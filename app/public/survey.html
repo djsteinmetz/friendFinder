@@ -7,7 +7,8 @@
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Francois+One" rel="stylesheet">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -18,19 +19,24 @@
         #surveyBody {
             margin-bottom: 30px;
         }
+
         h4 {
             text-align: center;
             margin-top: 50px;
         }
+
         i {
             font-size: 18px;
         }
+
         #jumbotron1 {
             padding-top: 100px;
         }
+
         .jumbotron {
-            background-color: rgb(233, 236, 239, 0.6) 
+            background-color: rgb(233, 236, 239, 0.6)
         }
+
         #friendFinder {
             position: relative;
             /* z-index: 500; */
@@ -40,6 +46,7 @@
             /* margin-top: 50px;
             margin-bottom: -175px; */
         }
+
         .fa-search {
             position: relative;
             display: block;
@@ -112,7 +119,9 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <strong>Answer the following questions honestly to discover a new best friend!</strong>
-                            <p><i>(5-strongly agree, 1-strongly disagree)</i></p>
+                            <p>
+                                <i>(5-strongly agree, 1-strongly disagree)</i>
+                            </p>
                         </h3>
                     </div>
                     <div class="panel-body">
@@ -122,7 +131,7 @@
                                     <label for="name">What is your name?</label>
                                     <input type="text" class="form-control" placeholder="Name" id="name">
                                 </div>
-    
+
                                 <div class="col">
                                     <label for="image">Link to a profile image!</label>
                                     <input type="text" class="form-control" placeholder="Profile image URL: http://...." id="image">
@@ -140,7 +149,7 @@
                                         <option>5</option>
                                     </select>
                                 </div>
-    
+
                                 <div class="col-lg-12">
                                     <label for="dogs">You like dogs.</label>
                                     <select class="form-control" id="dogs">
@@ -165,7 +174,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="reading">You like reading (1-strongly disagree, 5-strongly agree).</label>
+                                <label for="reading">You like reading.</label>
                                 <select class="form-control" id="reading">
                                     <option>1</option>
                                     <option>2</option>
@@ -179,20 +188,24 @@
                         <br>
                         <div class="text-left">
                             <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" id="add-btn">
-                            <span class="fa fa-fire"></span> Discover a new Friend</button>
+                                <span class="fa fa-fire"></span> Discover a new Friend</button>
                         </div>
-                        <a href="/">Home</a> | <a href="/api/friends">Friends API</a>
+                        <a href="/">Home</a> |
+                        <a href="/api/friends">Friends API</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <!-- Getting some weird results here when you submit the form multiple times............. -->
     <script type="text/javascript">
-        // Question: What does this code do?
+        let bestFriend = [];
+        let friends = [];
+        let matchScore = 0;
+        let diff = 0;
         $("#add-btn").on("click", function (event) {
             event.preventDefault();
-            var newFriend = {
+                let newFriend = {
                 name: $("#name").val().trim(),
                 image: $("#image").val().trim(),
                 scores: [$("#outdoors").val().trim(),
@@ -200,21 +213,42 @@
                 $("#cats").val().trim(),
                 $("#reading").val().trim()]
             };
+            // Total 'your' scores
+            let yourScore = newFriend.scores;
+            console.log(yourScore);
+            let yourTotal = 0;
+            for (var i = 0; i < yourScore.length; i++) {
+                yourTotal = (yourTotal + parseInt(yourScore[i]));
+            };
+            console.log("TOTAL:" + yourTotal);
+            console.log(newFriend);
+            // console.log(req);
+            // Reset form values
+            resetForm();
+            // Get bff
+            getBFF(friends, yourTotal, newFriend, bestFriend);
+            // Post latest user
+            addLatestUser(newFriend);
 
+        });
+        function addLatestUser(newFriend) {
+            $.post("/api/friends", newFriend).then(function (data) {
+                console.log("Friend Added!", data);
+            });
+        };
+        function resetForm() {
+            $("#name").val("");
+            $("#image").val("")
+            $("#outdoors").val(1);
+            $("#dogs").val(1);
+            $("#cats").val(1);
+            $("#reading").val(1);
+        };
+        function getBFF(friends, yourTotal, newFriend, bestFriend) {
+            // GET friends API
             $.get("/api/friends", function (req, res) {
-                let yourScore = newFriend.scores;
-                console.log(yourScore);
-                let yourTotal = 0;
-                for (var i = 0; i < yourScore.length; i++) {
-                    yourTotal = (yourTotal + parseInt(yourScore[i]));
-                };
-                console.log("TOTAL:" + yourTotal);
-                console.log(newFriend);
-                console.log(req);
                 // This is not right yet.... hmmm.
-                let friends = [];
-                let matchScore = 0;
-                let diff = 0;
+                
                 for (var i = 0; i < req.length; i++) {
                     let scores = req[i].scores;
                     let total = 0;
@@ -232,14 +266,13 @@
                 };
                 console.log(friends);
 
-                let bestFriend = [];
                 let min = friends[0].diff;
                 for (let i = 0, len = friends.length; i < len; i++) {
                     let v = friends[i].diff;
                     min = (v < min) ? v : min;
                 }
                 for (var q = 0; q < friends.length; q++) {
-                    if (friends[q].diff === min) {
+                    if (friends[q].diff === min && friends[q] != newFriend) {
                         bestFriend.push(friends[q]);
                     }
                 }
@@ -249,22 +282,8 @@
                 $("#friendName").html(bestFriend[0].name);
                 $("#friendImage").attr("src", bestFriend[0].image);
                 // $("#percentMatch").html("80% Match!");
-
             });
-
-            $.post("/api/friends", newFriend)
-                .then(function (data) {
-                    console.log("survey.html", data);
-                });
-
-            $("#name").val("");
-            $("#image").val("")
-            $("#outdoors").val(1);
-            $("#dogs").val(1);
-            $("#cats").val(1);
-            $("#reading").val(1);
-        });
-
+        }
     </script>
 
 </body>
