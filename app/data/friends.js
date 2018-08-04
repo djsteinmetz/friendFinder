@@ -1,8 +1,8 @@
 // my image "https://avatars0.githubusercontent.com/u/38231097?s=400&v=4"
 var friends = [
     {
-        name: "Karen Beltran-Lopez",
-        image: "https://avatars3.githubusercontent.com/u/37793087?s=400&v=4",
+        name: "Tracy",
+        image: "http://via.placeholder.com/400x400",
         scores: [
             3,
             1,
@@ -11,8 +11,8 @@ var friends = [
         ]
     },
     {
-        name: "Tashi Wangmo",
-        image: "https://avatars2.githubusercontent.com/u/37992724?s=400&v=4",
+        name: "Logan",
+        image: "http://via.placeholder.com/400x400",
         scores: [
             5,
             5,
@@ -21,8 +21,8 @@ var friends = [
         ]
     },
     {
-        name: "Nicole Brasaemle",
-        image: "https://avatars0.githubusercontent.com/u/37194559?s=400&v=4",
+        name: "Alan",
+        image: "http://via.placeholder.com/400x400",
         scores: [
             5,
             5,
@@ -31,8 +31,8 @@ var friends = [
         ]
     },
     {
-        name: "Tsimnuj Hawj",
-        image: "https://avatars2.githubusercontent.com/u/25711852?s=400&v=4",
+        name: "John",
+        image: "http://via.placeholder.com/400x400",
         scores: [
             1,
             2,
@@ -41,8 +41,8 @@ var friends = [
         ]
     },
     {
-        name: "Tunji Akanbi",
-        image: "https://avatars1.githubusercontent.com/u/32908023?s=400&v=4",
+        name: "Sharon",
+        image: "http://via.placeholder.com/400x400",
         scores: [
             3,
             3,
@@ -51,8 +51,8 @@ var friends = [
         ]
     },
     {
-        name: "Virginia de la Riva",
-        image: "https://avatars1.githubusercontent.com/u/37642808?s=400&v=4",
+        name: "Felix",
+        image: "http://via.placeholder.com/400x400",
         scores: [
             5,
             5,
@@ -61,8 +61,8 @@ var friends = [
         ]
     },
     {
-        name: "Lindsay Lindner",
-        image: "https://avatars2.githubusercontent.com/u/37348450?s=400&v=4",
+        name: "Percival",
+        image: "http://via.placeholder.com/400x400",
         scores: [
             5,
             5,
