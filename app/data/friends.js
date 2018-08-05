@@ -1,82 +1,66 @@
 // my image "https://avatars0.githubusercontent.com/u/38231097?s=400&v=4"
 var friends = [
     {
-        name: "Tracy",
+        name: "Lee",
         image: "http://via.placeholder.com/400x400",
         scores: [
             5,
-            1,
             5,
             5,
-            3,
-            1,
             5,
-            2,
-            3,
+            5,
+            5,
+            5,
+            5,
+            5,
             5
         ]
     },
     {
-        name: "Logan",
+        name: "Rose",
         image: "http://via.placeholder.com/400x400",
         scores: [
-            5,
-            5,
-            5,
-            5,
-            3,
             4,
-            5,
-            1,
-            2,
-            2
-        ]
-    },
-    {
-        name: "Alan",
-        image: "http://via.placeholder.com/400x400",
-        scores: [
-            5,
-            5,
-            1,
             4,
-            2,
-            3,
             4,
-            1,
-            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
             4
         ]
     },
     {
-        name: "John",
+        name: "Jackson",
         image: "http://via.placeholder.com/400x400",
         scores: [
-            1,
-            2,
-            4,
-            5,
-            2,
-            4,
-            5,
             3,
             3,
-            2
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
         ]
     },
     {
-        name: "Sharon",
+        name: "Virginia",
         image: "http://via.placeholder.com/400x400",
         scores: [
-            5,
-            5,
-            5,
-            3,
-            1,
-            5,
-            5,
-            5,
-            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
             2
         ]
     },
@@ -84,30 +68,14 @@ var friends = [
         name: "Felix",
         image: "http://via.placeholder.com/400x400",
         scores: [
-            5,
-            5,
             1,
-            5,
-            5,
-            5,
-            5,
-            3,
             1,
-            1
-        ]
-    },
-    {
-        name: "Percival",
-        image: "http://via.placeholder.com/400x400",
-        scores: [
-            5,
-            5,
             1,
-            2,
-            4,
-            3,
-            2,
-            2,
+            1,
+            1,
+            1,
+            1,
+            1,
             1,
             1
         ]
