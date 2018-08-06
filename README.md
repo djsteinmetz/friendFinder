@@ -1,2 +1,3 @@
 # Friend Finder
-<img width="1425" alt="screen shot 2018-08-03 at 9 08 07 pm" src="https://user-images.githubusercontent.com/38231097/43671529-66cf5fb4-9761-11e8-9957-a4ae40ce99b0.png">
+![friendfinder](https://user-images.githubusercontent.com/38231097/43695345-d1de60b4-98fd-11e8-86ad-f43384904434.gif)
+
