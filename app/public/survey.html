@@ -303,15 +303,10 @@
                     $("#veggies").val().trim(),
                     $("#movies").val().trim()]
                 };
-                console.log("YOUR SCORES: ", you.scores);
-                console.log("YOU: ", you)
                 $.post("/api/friends", you, function (data) {
-                    console.log("You've been added!", you);
                     // change modal src to new bff name, image
                     $("#friendName").text(data.name);
-                    console.log('best match name: ', data.name)
                     $("#friendImage").attr("src", data.image);
-                    console.log('best match image src', data.image)
                     // clear form after submission
                     $("#name").val("");
                     $("#image").val("")
