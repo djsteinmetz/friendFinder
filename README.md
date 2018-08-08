@@ -6,17 +6,17 @@ https://djs-friend-finder.herokuapp.com/
 
 ## Installation
 ```
-git clone https://github.com/djsteinmetz/friendFinder.git
-npm install
-node (or nodemon) server
+$ git clone https://github.com/djsteinmetz/friendFinder.git
+$ npm install
+$ node (or nodemon) server
 ```
 
 ## Technology
+* Javascript & jQuery
 * Node.js
-* Javascript
 * Express.js
-* Heroku
 * Animate.css
+* Heroku
 
 
 ## Demonstration
